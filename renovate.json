@@ -3,7 +3,7 @@
   "extends": [
     "config:recommended"
   ],
-  "description": "platform-catalog is versions-only (no build to break), so Renovate is the mechanism that keeps gradle/libs.versions.toml current. Every bump still lands as a reviewed PR, not an auto-merge — Strategy v7 Section 13 treats a version bump here as a deliberate, reviewed action.",
+  "description": "platform-catalog is versions-only (no build to break), so Renovate is the mechanism that keeps gradle/libs.versions.toml current. Every bump still lands as a reviewed PR, not an auto-merge, because a version bump here can affect every downstream consumer at once and needs a human to verify compatibility first.",
 
   "gradle": {
     "enabled": true,

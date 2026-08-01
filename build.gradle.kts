@@ -35,8 +35,8 @@ publishing {
     repositories {
         maven {
             name = "platformRegistry"
-            // Internal artifact repository (Nexus/Artifactory/GitHub Packages).
-            // Strategy v7, Section 16 — resolved identically by every consumer.
+            // Internal artifact repository (Nexus/Artifactory/GitHub Packages),
+            // resolved identically by every consumer.
             url = uri(
                 System.getenv("PLATFORM_REGISTRY_URL")
                     ?: providers.gradleProperty("platformRegistryUrl").getOrElse(

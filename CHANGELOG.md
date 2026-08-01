@@ -1,16 +1,16 @@
 # Changelog
 
 All notable version bumps to `platform-catalog` are documented here.
-This artifact is semantically versioned on its own (Strategy v7, Section 13):
-a bump here is a deliberate, reviewed action, not automatic.
+This artifact is semantically versioned on its own: a bump here can
+affect every downstream consumer at once, so it's a deliberate,
+reviewed action, not automatic.
 
 ## [1.0.0] - 2026-08-01
 
 ### Added
 
 Initial publication of the platform version catalog. Establishes the
-aligned versions for every shared dependency named in Strategy v7,
-Section 4:
+aligned versions for every shared dependency across the platform:
 
 - **Toolchain:** Java 25, Gradle 9.6.0
 - **Framework:** Spring Boot 4.1.0 (BOM), Micrometer 1.17.0
@@ -23,6 +23,5 @@ Published as a `version-catalog` component to the internal artifact
 repository, consumable by `platform-build`, `platform-core`,
 `platform-testing`, and `application-template`.
 
-This is the first artifact in the build order (Strategy v7 dependency
-graph, Section 11) — nothing else can be built against real coordinates
-until this exists and is published.
+This is the first artifact in the build order — nothing else can be
+built against real coordinates until this exists and is published.

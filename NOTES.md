@@ -6,8 +6,8 @@
 component only. A Maven BOM (`pom` packaging with `<dependencyManagement>`)
 is explicitly **not** built at this time.
 
-**Rationale (Strategy v7, Section 4):** every current and planned consumer
-of the platform (`platform-build`, `platform-core`, `platform-testing`,
+**Rationale:** every current and planned consumer of the platform
+(`platform-build`, `platform-core`, `platform-testing`,
 `application-template`) is a Gradle project. A Maven BOM would duplicate
 every version alias in a second format with no consumer to justify the
 maintenance cost.

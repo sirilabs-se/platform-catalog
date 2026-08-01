@@ -6,11 +6,10 @@ other platform artifact and every consuming application imports this
 catalog rather than pinning versions independently. This is what
 prevents silent version skew across applications that share no code.
 
-> Enterprise Application Platform Strategy v7, Section 4.
-
-This is the **first artifact in the build order** (Strategy v7
-dependency graph, Section 11) — nothing else in the platform can be
-built against real coordinates until this exists and is published.
+This is the **first artifact in the build order** — every other
+platform artifact and application declares its dependencies via
+aliases from this catalog, so nothing else can be built against real
+coordinates until this exists and is published.
 
 ## What's in here
 
@@ -44,7 +43,7 @@ dependencyResolutionManagement {
 
     versionCatalogs {
         create("libs") {
-            from("com.labstrash.platform:platform-catalog:1.0.0")
+            from("se.sirilabs.platform:platform-catalog:1.0.0")
         }
     }
 }
