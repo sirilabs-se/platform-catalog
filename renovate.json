@@ -1,0 +1,81 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "description": "platform-catalog is versions-only (no build to break), so Renovate is the mechanism that keeps gradle/libs.versions.toml current. Every bump still lands as a reviewed PR, not an auto-merge — Strategy v7 Section 13 treats a version bump here as a deliberate, reviewed action.",
+
+  "gradle": {
+    "enabled": true,
+    "fileMatch": ["(^|/)gradle/libs\\.versions\\.toml$"]
+  },
+
+  "semanticCommits": "enabled",
+  "semanticCommitType": "chore",
+  "semanticCommitScope": "deps",
+  "commitMessagePrefix": "chore(deps):",
+
+  "labels": ["dependencies", "platform-catalog"],
+
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+
+  "schedule": ["before 9am on monday"],
+  "timezone": "UTC",
+
+  "automerge": false,
+  "rangeStrategy": "pin",
+
+  "packageRules": [
+    {
+      "matchPackageNames": ["org.springframework.boot:spring-boot-dependencies"],
+      "groupName": "Spring Boot",
+      "labels": ["dependencies", "spring-boot"]
+    },
+    {
+      "matchPackageNames": [
+        "org.junit.jupiter:junit-jupiter",
+        "org.junit.jupiter:junit-jupiter-api",
+        "org.junit.jupiter:junit-jupiter-engine",
+        "org.junit.platform:junit-platform-launcher",
+        "org.junit:junit-bom",
+        "org.assertj:assertj-core",
+        "org.mockito:mockito-core",
+        "org.mockito:mockito-junit-jupiter",
+        "com.tngtech.archunit:archunit-junit5"
+      ],
+      "groupName": "test frameworks",
+      "labels": ["dependencies", "testing"]
+    },
+    {
+      "matchPackageNames": [
+        "com.diffplug.spotless:spotless-plugin-gradle",
+        "com.google.googlejavaformat:google-java-format"
+      ],
+      "groupName": "code quality tooling",
+      "labels": ["dependencies", "code-quality"]
+    },
+    {
+      "matchPackageNames": ["io.micrometer:micrometer-core", "io.micrometer:micrometer-registry-prometheus"],
+      "groupName": "Micrometer"
+    },
+    {
+      "matchDepTypes": ["devDependencies"],
+      "matchPackageNames": ["me.champeau.gradle.japicmp"],
+      "groupName": "japicmp"
+    },
+    {
+      "description": "Java/Gradle toolchain bumps are higher-risk for every downstream consumer — keep them isolated and never auto-mergeable.",
+      "matchPackageNames": ["java", "gradle"],
+      "groupName": "toolchain",
+      "labels": ["dependencies", "toolchain", "needs-careful-review"],
+      "automerge": false
+    }
+  ],
+
+  "postUpdateOptions": ["gradleUpdateReport"],
+
+  "prBodyNotes": [
+    "This PR updates an alias in `gradle/libs.versions.toml`. Per NOTES.md, verify the new version's compatibility across `platform-build`, `platform-core`, `platform-testing`, and `application-template` before merging, then remember to bump `platform-catalog`'s own version and add a `CHANGELOG.md` entry."
+  ]
+}
