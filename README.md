@@ -110,5 +110,6 @@ platform-catalog/
 ├── settings.gradle.kts
 ├── renovate.json            # automated dependency-update PRs (config:recommended)
 ├── CHANGELOG.md
-└── NOTES.md                 # records the deferred Maven BOM decision
+├── NOTES.md                 # records the deferred Maven BOM decision
+└── LICENSE
 ```
