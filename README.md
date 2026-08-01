@@ -87,10 +87,10 @@ This artifact is semantically versioned on its own. A version bump here
 is a **deliberate, reviewed action, not automatic** — see
 [`CHANGELOG.md`](CHANGELOG.md) for the history of what changed and why.
 
-Automated dependency-update PRs are opened by [Renovate](renovate.json),
-grouped by category (Spring Boot, test frameworks, code quality,
-toolchain), but nothing auto-merges. Every version bump still needs a
-human to verify compatibility across `platform-build`, `platform-core`,
+Automated dependency-update PRs are opened by [Renovate](renovate.json)
+(using its default `config:recommended` behavior), but nothing
+auto-merges. Every version bump still needs a human to verify
+compatibility across `platform-build`, `platform-core`,
 `platform-testing`, and `application-template` before merging, and to
 add the corresponding `CHANGELOG.md` entry.
 
@@ -108,7 +108,7 @@ platform-catalog/
 │   └── libs.versions.toml   # the source of truth
 ├── build.gradle.kts         # publishes the catalog as a version-catalog component
 ├── settings.gradle.kts
-├── renovate.json            # automated, grouped dependency-update PRs
+├── renovate.json            # automated dependency-update PRs (config:recommended)
 ├── CHANGELOG.md
 └── NOTES.md                 # records the deferred Maven BOM decision
 ```
